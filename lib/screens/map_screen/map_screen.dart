@@ -13,13 +13,34 @@ class MapScreen extends StatelessWidget {
         child: Stack(
           children: [
             MapView(controller: _controller),
-            Align(
-              alignment: Alignment.topRight,
-              child: CircleAvatar(
-                backgroundColor: Colors.grey,
-              ),
-            ),
+            ProfileButton(),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileButton extends StatelessWidget {
+  const ProfileButton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(12),
+      child: Align(
+        alignment: Alignment.topRight,
+        child: Material(
+          borderRadius: BorderRadius.circular(30),
+          clipBehavior: Clip.hardEdge,
+          child: IconButton(
+            icon: Icon(Icons.settings),
+            iconSize: 30,
+            splashColor: Colors.grey,
+            onPressed: () => print("kjkj"),
+          ),
         ),
       ),
     );
