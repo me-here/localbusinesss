@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:localbusiness/screens/map_screen/widgets/map_view.dart';
 import 'package:localbusiness/screens/map_screen/widgets/location_slider.dart';
 import 'package:localbusiness/screens/map_screen/widgets/settings_button.dart';
+import "../../views/business_sheet/draggable_business_sheet.dart";
 import './map_provider.dart';
 
 class MapScreen extends StatelessWidget {
@@ -26,7 +27,8 @@ class MapScreen extends StatelessWidget {
                     SettingsButton(),
                   ],
                 ),
-              )
+              ),
+              DraggableBusinessSheet(),
             ],
           ),
         ),
