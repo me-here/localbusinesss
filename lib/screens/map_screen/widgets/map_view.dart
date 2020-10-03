@@ -39,6 +39,8 @@ class _MapViewState extends State<MapView> {
     Circle(
       circleId: CircleId("Search Radius"),
       center: LatLng(37.4, -122.08832357078792),
+      strokeWidth: 0,
+      fillColor: Colors.blue[300].withOpacity(0.4),
       visible: true,
       radius: 100,
     ),
