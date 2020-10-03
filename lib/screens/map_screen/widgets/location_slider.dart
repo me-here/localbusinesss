@@ -14,6 +14,8 @@ class LocationSlider extends StatelessWidget {
       builder: (context, provider, child) => Slider.adaptive(
         value: provider.searchProximity,
         onChanged: provider.setSearchProximity,
+        min: 10,
+        max: 1000,
       ),
     );
   }

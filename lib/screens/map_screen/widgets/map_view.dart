@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
+import '../map_provider.dart';
 
 class MapView extends StatefulWidget {
   @override
@@ -35,17 +37,6 @@ class _MapViewState extends State<MapView> {
     ),
   };
 
-  final Set<Circle> _circles = {
-    Circle(
-      circleId: CircleId("Search Radius"),
-      center: LatLng(37.4, -122.08832357078792),
-      strokeWidth: 0,
-      fillColor: Colors.blue[300].withOpacity(0.4),
-      visible: true,
-      radius: 100,
-    ),
-  };
-
   Future<void> ensureLocationPermission() async {
     if (await Permission.location.request().isGranted) {
       setState(() {});
@@ -55,6 +46,19 @@ class _MapViewState extends State<MapView> {
   @override
   Widget build(BuildContext context) {
     ensureLocationPermission();
+    final circleRadius = Provider.of<MapProvider>(context).searchProximity;
+    print("Search proximity: $circleRadius");
+    Set<Circle> _circles = {
+      Circle(
+        circleId: CircleId("Search Radius"),
+        center: LatLng(37.4, -122.08832357078792),
+        strokeWidth: 0,
+        fillColor: Colors.blue[300].withOpacity(0.4),
+        visible: true,
+        radius: circleRadius,
+      ),
+    };
+
     return Container(
       height: double.infinity,
       width: double.infinity,
