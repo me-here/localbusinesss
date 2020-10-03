@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
+import 'package:location/location.dart';
 import '../map_provider.dart';
 
 class MapView extends StatefulWidget {
@@ -43,15 +44,40 @@ class _MapViewState extends State<MapView> {
     }
   }
 
+  Future<void> getLocation() async {
+    LocationData loc = await Location.instance.getLocation();
+    return LatLng(loc.latitude, loc.longitude);
+  }
+
+  LatLng location = LatLng(37.4, -122.08832357078792);
+
+  @override
+  void initState() {
+    super.initState();
+    Location.instance.onLocationChanged.listen((loc) {
+      if (loc.latitude != location.latitude &&
+          loc.longitude != location.longitude) {
+        setState(() {
+          location = LatLng(loc.latitude, loc.longitude);
+          print(location);
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     ensureLocationPermission();
     final circleRadius = Provider.of<MapProvider>(context).searchProximity;
+<<<<<<< HEAD
     //print("Search proximity: $circleRadius");
+=======
+    // print("Search proximity: $circleRadius");
+>>>>>>> 7c51cfee3798b066707619a05daa71eb0816ac10
     Set<Circle> _circles = {
       Circle(
         circleId: CircleId("Search Radius"),
-        center: LatLng(37.4, -122.08832357078792),
+        center: location,
         strokeWidth: 0,
         fillColor: Colors.blue[300].withOpacity(0.4),
         visible: true,
