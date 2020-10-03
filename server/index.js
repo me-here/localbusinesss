@@ -16,7 +16,7 @@ const uri = process.env.ATLAS_URI;
 console.log("MongoDB Atlas URI: " + uri);
 
 mongoose
-  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect('mongodb+srv://Team:Lt4rl6tRM@cluster0.nab6t.mongodb.net/Team?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
   .catch((err) => console.log(err));
 
 const connection = mongoose.connection;

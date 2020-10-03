@@ -2,7 +2,7 @@ const router = require("express").Router();
 const axios = require("axios");
 require("dotenv").config({ path: ".env" });
 
-API_KEY = process.env.PLACES_KEY;
+API_KEY = 'AIzaSyBk4_I6kJt42OHcxf-uyDlx7LUtQSykvWw';
 BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
 
 router.route("/").get((req, res) => {
