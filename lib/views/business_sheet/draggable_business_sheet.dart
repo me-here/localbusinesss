@@ -7,30 +7,38 @@ class DraggableBusinessSheet extends StatelessWidget {
       child: DraggableScrollableSheet(
         initialChildSize: 0.4,
         minChildSize: 0.07,
-        maxChildSize: 0.95,
+        maxChildSize: 1,
         builder: (BuildContext context, ScrollController scrollController) {
           return Container(
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(40),
-                topRight: Radius.circular(40),
-              ),
-            ),
-            child: ListView(
-              controller: scrollController,
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-              children: [
-                Header(),
-                BusinessTitle(),
-                RelevantInfo(),
-                BusinessImages(),
-                Description(),
-                JobPostings(),
-                CouponsAndVouchers(),
-              ],
-            ),
-          );
+            color: Colors.white,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: CustomScrollView(
+                      controller: scrollController,
+                      shrinkWrap: true,
+                      slivers: <Widget>[
+                        Header(),
+                        SliverFillRemaining(
+                          child: ListView(
+                            controller: scrollController,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 5),
+                            children: [
+                              BusinessTitle(),
+                              RelevantInfo(),
+                              BusinessImages(),
+                              Description(),
+                              JobPostings(),
+                              CouponsAndVouchers(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ));
         },
       ),
     );
@@ -44,13 +52,18 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 30,
-      child: Divider(
-        color: Colors.black,
-        thickness: 5,
-        endIndent: MediaQuery.of(context).size.width * 0.25,
-        indent: MediaQuery.of(context).size.width * 0.25,
+    return SliverAppBar(
+      backgroundColor: Colors.white,
+      floating: true,
+      snap: true,
+      pinned: true,
+      title: Container(
+        child: Divider(
+          color: Colors.black,
+          thickness: 5,
+          endIndent: MediaQuery.of(context).size.width * 0.25,
+          indent: MediaQuery.of(context).size.width * 0.25,
+        ),
       ),
     );
   }
@@ -67,7 +80,18 @@ class BusinessTitle extends StatelessWidget {
       child: Container(
         color: Colors.red,
         height: 200,
-        child: Text("Title"),
+        child: Column(
+          children: [
+            Text(
+              "Title",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
