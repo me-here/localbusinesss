@@ -6,6 +6,7 @@ import 'package:localbusiness/screens/map_screen/widgets/map_view.dart';
 import 'package:localbusiness/screens/map_screen/widgets/location_slider.dart';
 import 'package:localbusiness/screens/map_screen/widgets/settings_button.dart';
 import "../../views/business_sheet/draggable_business_sheet.dart";
+import "../../views/business_sheet/sheet_provider.dart";
 import './map_provider.dart';
 import 'dart:math' as math;
 
@@ -16,6 +17,8 @@ class MapScreen extends StatelessWidget {
       body: SafeArea(
         child: ChangeNotifierProvider<MapProvider>(
           create: (context) => MapProvider(),
+          builder: (context, child) => ChangeNotifierProvider(
+          create: (context) => DraggableSheetViewModel(),
           builder: (context, child) => Stack(
             children: [
               MapView(),
@@ -41,12 +44,10 @@ class MapScreen extends StatelessWidget {
                   ),
                 ),
               ),
-<<<<<<< HEAD
-=======
               DraggableBusinessSheet(),
->>>>>>> 8dcfbe79d56ff5900f24883554737935c2921909
             ],
           ),
+        ),
         ),
       ),
     );

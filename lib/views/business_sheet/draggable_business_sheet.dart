@@ -6,57 +6,59 @@ class DraggableBusinessSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => DraggableSheetViewModel(),
-      builder: (context, child){
-        return Container(
-          child: DraggableScrollableSheet(
-            initialChildSize: 0.4,
-            minChildSize: 0.07,
-            maxChildSize: 1,
-            builder: (BuildContext context, ScrollController scrollController) {
-              return Container(
-                  color: Colors.white,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: CustomScrollView(
+    return context
+        .watch<DraggableSheetViewModel>()
+        .isSheetOpen ? Container(
+      child: DraggableScrollableSheet(
+        initialChildSize: 0.4,
+        minChildSize: 0.07,
+        maxChildSize: 1,
+        builder: (BuildContext context, ScrollController scrollController) {
+          return Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                Expanded(
+                  child: CustomScrollView(
+                    controller: scrollController,
+                    shrinkWrap: true,
+                    slivers: <Widget>[
+                      Header(),
+                      SliverFillRemaining(
+                        child: ListView(
                           controller: scrollController,
-                          shrinkWrap: true,
-                          slivers: <Widget>[
-                            Header(),
-                            SliverFillRemaining(
-                              child: ListView(
-                                controller: scrollController,
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 5,
-                                  horizontal: 5,
-                                ),
-                                children: [
-                                  BusinessTitle(),
-                                  Divider(),
-                                  RelevantInfo(),
-                                  Divider(),
-                                  BusinessImages(),
-                                  Divider(),
-                                  Description(),
-                                  Divider(),
-                                  JobPostings(context.watch<DraggableSheetViewModel>().listOfJobs),
-                                  Divider(),
-                                  CouponsAndVouchers(),
-                                ],
-                              ),
-                            ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 5,
+                            horizontal: 5,
+                          ),
+                          children: [
+                            BusinessTitle(),
+                            Divider(),
+                            RelevantInfo(),
+                            Divider(),
+                            BusinessImages(),
+                            Divider(),
+                            Description(),
+                            Divider(),
+                            JobPostings(context
+                                .watch<DraggableSheetViewModel>()
+                                .listOfJobs),
+                            Divider(),
+                            CouponsAndVouchers(),
                           ],
                         ),
                       ),
                     ],
-                  ));
-            },
-          ),
-        );
-      },
-    );
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    )
+        :
+    Container();
   }
 }
 
@@ -77,8 +79,14 @@ class Header extends StatelessWidget {
         child: Divider(
           color: Colors.black,
           thickness: 5,
-          endIndent: MediaQuery.of(context).size.width * 0.25,
-          indent: MediaQuery.of(context).size.width * 0.25,
+          endIndent: MediaQuery
+              .of(context)
+              .size
+              .width * 0.25,
+          indent: MediaQuery
+              .of(context)
+              .size
+              .width * 0.25,
         ),
       ),
     );
@@ -224,6 +232,7 @@ class Description extends StatelessWidget {
 
 class JobPostings extends StatelessWidget {
   final jobList;
+
   JobPostings(this.jobList);
 
   @override
