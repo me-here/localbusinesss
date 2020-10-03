@@ -14,28 +14,17 @@ class _SearchBarState extends State<SearchBar> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            width: MediaQuery.of(context).size.width * 0.5,
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Search for a local business',
                 fillColor: Colors.lightBlue,
                 border: const OutlineInputBorder(),
               ),
+              onSubmitted: (value) {
+                print(value);
+              },
             ),
           ),
-          FlatButton(
-            color: Colors.blue,
-            child: Text(
-              'Submit',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            onPressed: () {},
-          )
         ],
       ),
     );
