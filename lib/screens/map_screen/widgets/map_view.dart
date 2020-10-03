@@ -15,29 +15,6 @@ class MapView extends StatefulWidget {
 class _MapViewState extends State<MapView> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  final Set<Marker> _markers = {
-    // Marker(
-    //   markerId: MarkerId("Joe's coffee"),
-    //   position: LatLng(37.4, -122.08832357078792),
-    // ),
-    // Marker(
-    //   markerId: MarkerId("Beth's Hair Salon"),
-    //   position: LatLng(37.4, -122.0889),
-    // ),
-    // Marker(
-    //   markerId: MarkerId("Joe's coffee"),
-    //   position: LatLng(37.3, -122.08832357078792),
-    // ),
-    // Marker(
-    //   markerId: MarkerId("Joe's coffee"),
-    //   position: LatLng(37.1, -122.08832357078792),
-    // ),
-    // Marker(
-    //   markerId: MarkerId("Joe's coffee"),
-    //   position: LatLng(37.3, -122.09),
-    // ),
-  };
-
   Future<void> ensureLocationPermission() async {
     if (await Permission.location.request().isGranted) {
       setState(() {});
@@ -68,8 +45,8 @@ class _MapViewState extends State<MapView> {
   @override
   Widget build(BuildContext context) {
     ensureLocationPermission();
-    if (_markers.isEmpty) {
-      Provider.of<MapProvider>(context).getBusinesses();
+    if (Provider.of<MapProvider>(context).markers.isEmpty) {
+      Provider.of<MapProvider>(context).getMarkers();
     }
     final circleRadius = Provider.of<MapProvider>(context).searchProximity;
     Set<Circle> _circles = {
@@ -96,7 +73,7 @@ class _MapViewState extends State<MapView> {
         onMapCreated: (controller) {
           _controller.complete(controller);
         },
-        markers: _markers,
+        markers: Provider.of<MapProvider>(context).markers,
         onTap: (LatLng pos) {
           print("pressed $pos");
         },
