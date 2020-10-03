@@ -13,7 +13,7 @@ class _SearchBarState extends State<SearchBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
+          Expanded(
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Search for a local business',
