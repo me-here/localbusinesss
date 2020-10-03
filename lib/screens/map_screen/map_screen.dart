@@ -41,10 +41,7 @@ class MapScreen extends StatelessWidget {
                   ),
                 ),
               ),
-<<<<<<< HEAD
-=======
               DraggableBusinessSheet(),
->>>>>>> 8dcfbe79d56ff5900f24883554737935c2921909
             ],
           ),
         ),

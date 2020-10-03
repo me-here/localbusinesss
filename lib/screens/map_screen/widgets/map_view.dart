@@ -69,11 +69,7 @@ class _MapViewState extends State<MapView> {
   Widget build(BuildContext context) {
     ensureLocationPermission();
     final circleRadius = Provider.of<MapProvider>(context).searchProximity;
-<<<<<<< HEAD
     //print("Search proximity: $circleRadius");
-=======
-    // print("Search proximity: $circleRadius");
->>>>>>> 7c51cfee3798b066707619a05daa71eb0816ac10
     Set<Circle> _circles = {
       Circle(
         circleId: CircleId("Search Radius"),

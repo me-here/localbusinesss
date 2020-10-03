@@ -9,7 +9,7 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -19,6 +19,7 @@ class _SearchBarState extends State<SearchBar> {
               decoration: InputDecoration(
                 hintText: 'Search for a local business',
                 fillColor: Colors.lightBlue,
+                border: const OutlineInputBorder(),
               ),
             ),
           ),
@@ -29,6 +30,9 @@ class _SearchBarState extends State<SearchBar> {
               style: TextStyle(
                 color: Colors.white,
               ),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
             ),
             onPressed: () {},
           )
