@@ -1,59 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:localbusiness/views/business_sheet/sheet_provider.dart';
+import "package:provider/provider.dart";
 
 class DraggableBusinessSheet extends StatelessWidget {
 
-  var jobs = [{"position" : "Cook", "type" : "Full Time", "urgency" : "Urgent"},
-    {"position" : "Janitor", "type" : "Part Time", "urgency" : "Not Urgent"},
-    {"position" : "Manager", "type" : "Full Time", "urgency" : "Urgent"},
-    ];
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: DraggableScrollableSheet(
-        initialChildSize: 0.4,
-        minChildSize: 0.07,
-        maxChildSize: 1,
-        builder: (BuildContext context, ScrollController scrollController) {
-          return Container(
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: CustomScrollView(
-                      controller: scrollController,
-                      shrinkWrap: true,
-                      slivers: <Widget>[
-                        Header(),
-                        SliverFillRemaining(
-                          child: ListView(
-                            controller: scrollController,
-                            padding: EdgeInsets.symmetric(
-                              vertical: 5,
-                              horizontal: 5,
+    return ChangeNotifierProvider(
+      create: (context) => DraggableSheetViewModel(),
+      builder: (context, child){
+        return Container(
+          child: DraggableScrollableSheet(
+            initialChildSize: 0.4,
+            minChildSize: 0.07,
+            maxChildSize: 1,
+            builder: (BuildContext context, ScrollController scrollController) {
+              return Container(
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: CustomScrollView(
+                          controller: scrollController,
+                          shrinkWrap: true,
+                          slivers: <Widget>[
+                            Header(),
+                            SliverFillRemaining(
+                              child: ListView(
+                                controller: scrollController,
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 5,
+                                  horizontal: 5,
+                                ),
+                                children: [
+                                  BusinessTitle(),
+                                  Divider(),
+                                  RelevantInfo(),
+                                  Divider(),
+                                  BusinessImages(),
+                                  Divider(),
+                                  Description(),
+                                  Divider(),
+                                  JobPostings(context.watch<DraggableSheetViewModel>().listOfJobs),
+                                  Divider(),
+                                  CouponsAndVouchers(),
+                                ],
+                              ),
                             ),
-                            children: [
-                              BusinessTitle(),
-                              Divider(),
-                              RelevantInfo(),
-                              Divider(),
-                              BusinessImages(),
-                              Divider(),
-                              Description(),
-                              Divider(),
-                              JobPostings(jobs),
-                              Divider(),
-                              CouponsAndVouchers(),
-                            ],
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                ],
-              ));
-        },
-      ),
+                      ),
+                    ],
+                  ));
+            },
+          ),
+        );
+      },
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:localbusiness/screens/map_screen/widgets/map_view.dart';
 import 'package:localbusiness/screens/map_screen/widgets/location_slider.dart';
 import 'package:localbusiness/screens/map_screen/widgets/settings_button.dart';
+import "../../views/business_sheet/draggable_business_sheet.dart";
 import './map_provider.dart';
 import 'dart:math' as math;
 
@@ -40,6 +41,10 @@ class MapScreen extends StatelessWidget {
                   ),
                 ),
               ),
+<<<<<<< HEAD
+=======
+              DraggableBusinessSheet(),
+>>>>>>> 8dcfbe79d56ff5900f24883554737935c2921909
             ],
           ),
         ),

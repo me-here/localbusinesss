@@ -1,30 +1,31 @@
-const router = require('express').Router();
-const axios = require('axios');
+const router = require("express").Router();
+const axios = require("axios");
+require("dotenv").config({ path: ".env" });
 
-API_KEY = 'AIzaSyBk4_I6kJt42OHcxf-uyDlx7LUtQSykvWw';
-API_URL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+API_KEY = process.env.PLACES_KEY;
+BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
 
-router.route('/').get((req, res) => {
-    const lat = req.body.lat;
-    const lon = req.body.lon;
-    const radius = req.body.radius;
+router.route("/").get((req, res) => {
+  const lat = req.body.lat;
+  const lon = req.body.lon;
+  const radius = req.body.radius;
 
-    axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + lat + ',' + lon + '&radius=' + radius + '&type=business&keyword=local&key=AIzaSyBk4_I6kJt42OHcxf-uyDlx7LUtQSykvWw')
-        .then((response) => {
-            console.log(response.data);
-            res.json(response.data);
-        })
-        .catch(err => {
-            console.log(err);
-            console.log(err.response.data.error);
-        });
+  if (!lat) res.status(404).send("No latitude found.");
+  if (!lon) res.status(404).send("No longitude found.");
+  if (!radius) res.status(404).send("No radius found.");
 
-    //console.log(places);
-    //res.json(places);
+  axios
+    .get(
+      `${BASE_URL}?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=${API_KEY}`
+    )
+    .then((response) => {
+      console.log(response.data);
+      res.json(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      console.log(err.response.data.error);
+    });
 });
 
-
-
 module.exports = router;
-
-// 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=business&keyword=local&key=AIzaSyBk4_I6kJt42OHcxf-uyDlx7LUtQSykvWw'
