@@ -1,6 +1,7 @@
 # localbusiness
 
 A new Flutter project.
+In order to start server, navigate to server directory, and then run npm install, followed by npm start.
 
 ## Getting Started
 
