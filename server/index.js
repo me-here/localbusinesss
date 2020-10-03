@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const businessRoute = require('./routes/businessRoute');
+const mapRoute = require('./routes/mapRoute');
 require('dotenv').config({path: '.env'})
 
 app = express();
@@ -25,3 +26,6 @@ connection.once('open', () => {
 })
 
 app.use('/business', businessRoute);
+app.use('/map', mapRoute);
+
+// AIzaSyBk4_I6kJt42OHcxf-uyDlx7LUtQSykvWw
