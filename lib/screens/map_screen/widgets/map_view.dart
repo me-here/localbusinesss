@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:location/location.dart';
+import "../../../views/business_sheet/sheet_provider.dart";
 import '../map_provider.dart';
 
 class MapView extends StatefulWidget {
@@ -70,6 +71,7 @@ class _MapViewState extends State<MapView> {
     ensureLocationPermission();
     final circleRadius = Provider.of<MapProvider>(context).searchProximity;
     //print("Search proximity: $circleRadius");
+    // print("Search proximity: $circleRadius");
     Set<Circle> _circles = {
       Circle(
         circleId: CircleId("Search Radius"),
@@ -96,6 +98,7 @@ class _MapViewState extends State<MapView> {
         },
         markers: _markers,
         onTap: (LatLng pos) {
+          Provider.of<DraggableSheetViewModel>(context, listen: false).openSheet();
           print("pressed $pos");
         },
         circles: _circles,
