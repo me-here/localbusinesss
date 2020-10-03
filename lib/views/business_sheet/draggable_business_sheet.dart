@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class DraggableBusinessSheet extends StatelessWidget {
+
+  var jobs = [{"position" : "Cook", "type" : "Full Time", "urgency" : "Urgent"},
+    {"position" : "Janitor", "type" : "Part Time", "urgency" : "Not Urgent"},
+    {"position" : "Manager", "type" : "Full Time", "urgency" : "Urgent"},
+    ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,7 +16,7 @@ class DraggableBusinessSheet extends StatelessWidget {
         maxChildSize: 1,
         builder: (BuildContext context, ScrollController scrollController) {
           return Container(
-            color: Colors.white,
+              color: Colors.white,
               child: Column(
                 children: [
                   Expanded(
@@ -23,13 +29,20 @@ class DraggableBusinessSheet extends StatelessWidget {
                           child: ListView(
                             controller: scrollController,
                             padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 5),
+                              vertical: 5,
+                              horizontal: 5,
+                            ),
                             children: [
                               BusinessTitle(),
+                              Divider(),
                               RelevantInfo(),
+                              Divider(),
                               BusinessImages(),
+                              Divider(),
                               Description(),
-                              JobPostings(),
+                              Divider(),
+                              JobPostings(jobs),
+                              Divider(),
                               CouponsAndVouchers(),
                             ],
                           ),
@@ -53,6 +66,7 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      forceElevated: true,
       backgroundColor: Colors.white,
       floating: true,
       snap: true,
@@ -77,9 +91,10 @@ class BusinessTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      borderOnForeground: false,
+      elevation: 0,
       child: Container(
-        color: Colors.red,
-        height: 200,
+        padding: EdgeInsets.all(5),
         child: Column(
           children: [
             Text(
@@ -90,6 +105,19 @@ class BusinessTitle extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.location_pin,
+                  color: Colors.grey,
+                ),
+                Text(
+                  "0.5 Miles Away",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            )
           ],
         ),
       ),
@@ -105,11 +133,38 @@ class RelevantInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: Container(
-      color: Colors.blue,
-      height: 200,
-      child: Text("Address, phone number, website, and category"),
-    ));
+      elevation: 0,
+      child: Container(
+        height: 125,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              "1900 University Ave, Austin, TX, 78705",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+            Text(
+              "(512) 404-3655",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+            Text(
+              "Restaurant",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -121,10 +176,10 @@ class BusinessImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0,
       child: Container(
-        color: Colors.green,
-        height: 200,
-        child: Text("Image"),
+        child: Image.network(
+            "https://th.bing.com/th/id/OIP.QcUaYzmo1nZE9xWQgaOCaQHaEo?pid=Api&rs=1"),
       ),
     );
   }
@@ -138,26 +193,98 @@ class Description extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: Container(
-      color: Colors.red,
-      height: 200,
-      child: Text("Description"),
-    ));
+      elevation: 0,
+      child: Container(
+          height: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                "Try out Carillion",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                "Innovative chefs, quality ingredients, masterfully-constructed dishes, a comfortably elegant atmosphere, and top-notch service. We serve beautifully-plated dishes and provide inspiring cuisine to make dining at The Carillon one of the best dining experiences in Austin.",
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          )),
+    );
   }
 }
 
 class JobPostings extends StatelessWidget {
-  const JobPostings({
-    Key key,
-  }) : super(key: key);
+  final jobList;
+  JobPostings(this.jobList);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0,
       child: Container(
-        color: Colors.blue,
-        height: 200,
-        child: Text("Job Posting"),
+        height: 300,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              "Looking for a Job?",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Container(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: jobList.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    elevation: 0,
+                    child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 2),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        width: 200,
+                        height: 100,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              jobList.elementAt(index)["position"],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 19, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              jobList.elementAt(index)["type"],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 19, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              jobList.elementAt(index)["urgency"],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 19, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        )),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -171,10 +298,10 @@ class CouponsAndVouchers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0,
       child: Container(
-        color: Colors.green,
-        height: 200,
-        child: Text("Coupons/Vouchers/Advertisement"),
+        child: Image.network(
+            "https://s-media-cache-ak0.pinimg.com/736x/91/df/4d/91df4d45d4d3e0dfe6ac212adda70508.jpg"),
       ),
     );
   }
