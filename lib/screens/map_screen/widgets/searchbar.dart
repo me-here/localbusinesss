@@ -9,29 +9,22 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width * 0.5,
+          Expanded(
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Search for a local business',
                 fillColor: Colors.lightBlue,
+                border: const OutlineInputBorder(),
               ),
+              onSubmitted: (value) {
+                print(value);
+              },
             ),
           ),
-          FlatButton(
-            color: Colors.blue,
-            child: Text(
-              'Submit',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            onPressed: () {},
-          )
         ],
       ),
     );
