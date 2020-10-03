@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:localbusiness/screens/login_screen/login_screen.dart';
+import 'package:localbusiness/screens/map_screen/map_screen.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.blue[300],
+  ));
   runApp(MaterialApp(
     title: 'Local Business Supporter',
-    home: Scaffold(
-      body: Container(
-        child: Text('hello world'),
-      ),
-    ),
+    routes: {
+      '/login': (_) => LoginScreen(),
+      '/map': (_) => MapScreen(),
+    },
+    initialRoute: '/map',
+    debugShowCheckedModeBanner: false,
   ));
 }
