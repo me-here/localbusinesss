@@ -16,26 +16,26 @@ class _MapViewState extends State<MapView> {
   final Completer<GoogleMapController> _controller = Completer();
 
   final Set<Marker> _markers = {
-    Marker(
-      markerId: MarkerId("Joe's coffee"),
-      position: LatLng(37.4, -122.08832357078792),
-    ),
-    Marker(
-      markerId: MarkerId("Beth's Hair Salon"),
-      position: LatLng(37.4, -122.0889),
-    ),
-    Marker(
-      markerId: MarkerId("Joe's coffee"),
-      position: LatLng(37.3, -122.08832357078792),
-    ),
-    Marker(
-      markerId: MarkerId("Joe's coffee"),
-      position: LatLng(37.1, -122.08832357078792),
-    ),
-    Marker(
-      markerId: MarkerId("Joe's coffee"),
-      position: LatLng(37.3, -122.09),
-    ),
+    // Marker(
+    //   markerId: MarkerId("Joe's coffee"),
+    //   position: LatLng(37.4, -122.08832357078792),
+    // ),
+    // Marker(
+    //   markerId: MarkerId("Beth's Hair Salon"),
+    //   position: LatLng(37.4, -122.0889),
+    // ),
+    // Marker(
+    //   markerId: MarkerId("Joe's coffee"),
+    //   position: LatLng(37.3, -122.08832357078792),
+    // ),
+    // Marker(
+    //   markerId: MarkerId("Joe's coffee"),
+    //   position: LatLng(37.1, -122.08832357078792),
+    // ),
+    // Marker(
+    //   markerId: MarkerId("Joe's coffee"),
+    //   position: LatLng(37.3, -122.09),
+    // ),
   };
 
   Future<void> ensureLocationPermission() async {
@@ -68,8 +68,10 @@ class _MapViewState extends State<MapView> {
   @override
   Widget build(BuildContext context) {
     ensureLocationPermission();
+    if (_markers.isEmpty) {
+      Provider.of<MapProvider>(context).getBusinesses();
+    }
     final circleRadius = Provider.of<MapProvider>(context).searchProximity;
-    // print("Search proximity: $circleRadius");
     Set<Circle> _circles = {
       Circle(
         circleId: CircleId("Search Radius"),

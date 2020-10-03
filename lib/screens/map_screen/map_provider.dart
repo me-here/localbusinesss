@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../repositories/MongoClient.dart';
 
 class MapProvider extends ChangeNotifier {
   double _searchProximity = 100;
@@ -7,4 +8,6 @@ class MapProvider extends ChangeNotifier {
     _searchProximity = newProximity;
     notifyListeners();
   }
+
+  Function getBusinesses = MongoClient.getNearbyBusinesses;
 }
