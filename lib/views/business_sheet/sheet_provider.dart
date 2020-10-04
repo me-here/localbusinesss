@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 class DraggableSheetViewModel extends ChangeNotifier {
+
 
   var isSheetOpen = false;
 
