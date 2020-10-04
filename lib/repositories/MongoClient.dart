@@ -23,31 +23,17 @@ class MongoClient {
     if (results == null) return [];
     print(results);
 
-    List<Business> r = results.map((res) {
-      final result = Map<String, dynamic>.from(res);
-      double lat = result["geometry"]["location"]["lat"];
-      print(lat);
-      double lng = result["geometry"]["location"]["lng"];
-      print(lng);
-      String name = result["name"];
-      print(name);
-      String iconURL = result["icon"];
-      print(iconURL);
-      String photoURL =
-          "https://maps.googleapis.com/maps/api/place/photo?${result["photos"]["photo_reference"]}";
-      print(photoURL);
-      String place_id = result["place_id"];
-      print(place_id);
-      double rating = result["rating"];
-      print(rating);
-      double price_lvl = result["price_level"];
-      print(price_lvl);
-      List<String> types = result["types"];
-      print(types);
+    List<Business> businesses = [];
 
-      return Business(iconURL: iconURL, lat: lat, lon: lng, name: name);
-    }).toList();
-    return r;
+    for (final result in results) {
+      final lat = result["geometry"]["location"]["lat"];
+      final lng = result["geometry"]["location"]["lng"];
+      final name = result["name"];
+
+      businesses.add(Business(lat: lat, lon: lng, name: name));
+    }
+
+    return businesses;
   }
 
   static Future<List<Business>> getSelectedBusiness() async {
