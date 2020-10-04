@@ -5,8 +5,10 @@ import 'package:location/location.dart';
 
 class MongoClient {
   static const BASE_URL = 'https://make-uc-server.herokuapp.com';
-  static Future<List<Business>> getNearbyBusinesses(double radius) async {
+  static Future<List<Business>> getNearbyBusinesses(double radius,
+      {String query}) async {
     LocationData loc = await Location.instance.getLocation();
+    String q = query ?? "restaurant";
     print("${loc.latitude}  ${loc.longitude}");
     final res = await http.post(
       '$BASE_URL/map',
@@ -14,8 +16,8 @@ class MongoClient {
       body: jsonEncode({
         "lat": loc.latitude,
         "lon": loc.longitude,
-        "radius": "$radius",
-        "keyword": "restaurant"
+        "radius": "${radius - 350}",
+        "keyword": q,
       }),
     );
     print("Working?");

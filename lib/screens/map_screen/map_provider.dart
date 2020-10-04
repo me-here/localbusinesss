@@ -9,7 +9,7 @@ class MapProvider extends ChangeNotifier {
   SheetProvider sheetProvider;
   MapProvider({this.sheetProvider});
 
-  double _searchProximity = 100;
+  double _searchProximity = 700;
   double get searchProximity => _searchProximity;
   void setSearchProximity(double newProximity) {
     _searchProximity = newProximity;
@@ -32,8 +32,9 @@ class MapProvider extends ChangeNotifier {
     sheetProvider.openSheet();
   }
 
-  Future<void> getMarkers() async {
-    _businesses = await MongoClient.getNearbyBusinesses(_searchProximity);
+  Future<void> getMarkers(String query) async {
+    _businesses =
+        await MongoClient.getNearbyBusinesses(_searchProximity, query: query);
 
     for (final business in _businesses) {
       final id = MarkerId(business.name);
@@ -48,6 +49,11 @@ class MapProvider extends ChangeNotifier {
       _markers.add(marker);
     }
 
+    notifyListeners();
+  }
+
+  void clearMarkers() {
+    _markers = {};
     notifyListeners();
   }
 }

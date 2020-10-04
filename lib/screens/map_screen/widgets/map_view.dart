@@ -78,7 +78,8 @@ class _MapViewState extends State<MapView> {
         ),
         onMapCreated: (controller) {
           _controller.complete(controller);
-          Provider.of<MapProvider>(context, listen: false).getMarkers();
+          Provider.of<MapProvider>(context, listen: false)
+              .getMarkers("restaurant");
         },
         markers: Provider.of<MapProvider>(context).markers,
         circles: _circles,
