@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class SearchBar extends StatefulWidget {
   @override
@@ -17,8 +18,10 @@ class _SearchBarState extends State<SearchBar> {
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Search for a local business',
-                fillColor: Colors.lightBlue,
+                filled: true,
+                fillColor: Colors.white,
                 border: const OutlineInputBorder(),
+                suffixIcon: Icon(Icons.search),
               ),
               onSubmitted: (value) {
                 print(value);

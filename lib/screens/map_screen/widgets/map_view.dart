@@ -16,38 +16,17 @@ class MapView extends StatefulWidget {
 class _MapViewState extends State<MapView> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  final Set<Marker> _markers = {
-    Marker(
-      markerId: MarkerId("Joe's coffee"),
-      position: LatLng(37.4, -122.08832357078792),
-    ),
-    Marker(
-      markerId: MarkerId("Beth's Hair Salon"),
-      position: LatLng(37.4, -122.0889),
-    ),
-    Marker(
-      markerId: MarkerId("Joe's coffee"),
-      position: LatLng(37.3, -122.08832357078792),
-    ),
-    Marker(
-      markerId: MarkerId("Joe's coffee"),
-      position: LatLng(37.1, -122.08832357078792),
-    ),
-    Marker(
-      markerId: MarkerId("Joe's coffee"),
-      position: LatLng(37.3, -122.09),
-    ),
-  };
-
   Future<void> ensureLocationPermission() async {
     if (await Permission.location.request().isGranted) {
       setState(() {});
     }
   }
 
-  Future<void> getLocation() async {
-    LocationData loc = await Location.instance.getLocation();
-    return LatLng(loc.latitude, loc.longitude);
+  Future<void> animateTo(double lat, double long) async {
+    print("ANIMATE");
+    final f = await _controller.future;
+    final cameraPosition = CameraPosition(target: LatLng(lat, long), zoom: 14);
+    f.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
   }
 
   LatLng location = LatLng(37.4, -122.08832357078792);
@@ -58,10 +37,11 @@ class _MapViewState extends State<MapView> {
     Location.instance.onLocationChanged.listen((loc) {
       if (loc.latitude != location.latitude &&
           loc.longitude != location.longitude) {
+        animateTo(loc.latitude, loc.longitude);
         setState(() {
           location = LatLng(loc.latitude, loc.longitude);
-          print(location);
         });
+        print(location);
       }
     });
   }
@@ -69,9 +49,8 @@ class _MapViewState extends State<MapView> {
   @override
   Widget build(BuildContext context) {
     ensureLocationPermission();
+
     final circleRadius = Provider.of<MapProvider>(context).searchProximity;
-    //print("Search proximity: $circleRadius");
-    // print("Search proximity: $circleRadius");
     Set<Circle> _circles = {
       Circle(
         circleId: CircleId("Search Radius"),
@@ -95,10 +74,12 @@ class _MapViewState extends State<MapView> {
         ),
         onMapCreated: (controller) {
           _controller.complete(controller);
+          Provider.of<MapProvider>(context, listen: false).getMarkers();
         },
-        markers: _markers,
+        markers: Provider.of<MapProvider>(context).markers,
         onTap: (LatLng pos) {
-          Provider.of<DraggableSheetViewModel>(context, listen: false).openSheet();
+          Provider.of<DraggableSheetViewModel>(context, listen: false)
+              .openSheet();
           print("pressed $pos");
         },
         circles: _circles,
