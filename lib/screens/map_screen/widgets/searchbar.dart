@@ -18,7 +18,8 @@ class _SearchBarState extends State<SearchBar> {
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Search for a local business',
-                fillColor: Colors.lightBlue,
+                filled: true,
+                fillColor: Colors.white,
                 border: const OutlineInputBorder(),
               ),
               onSubmitted: (value) {
