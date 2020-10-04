@@ -81,11 +81,6 @@ class _MapViewState extends State<MapView> {
           Provider.of<MapProvider>(context, listen: false).getMarkers();
         },
         markers: Provider.of<MapProvider>(context).markers,
-        onTap: (LatLng pos) {
-          Provider.of<DraggableSheetViewModel>(context, listen: false)
-              .openSheet();
-          print("pressed $pos");
-        },
         circles: _circles,
       ),
     );
