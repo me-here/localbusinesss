@@ -10,7 +10,7 @@ void main() {
   runApp(MaterialApp(
     title: 'Local Business Supporter',
     routes: {
-      '/login': (_) => LoginScreen(),
+      // '/login': (_) => LoginScreen(),
       '/map': (_) => MapScreen(),
     },
     initialRoute: '/map',

@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "495891078078",
+    "firebase_url": "https://localbusinessapp-bfbee.firebaseio.com",
+    "project_id": "localbusinessapp-bfbee",
+    "storage_bucket": "localbusinessapp-bfbee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495891078078:android:866ebd841196a426e0f7ef",
+        "android_client_info": {
+          "package_name": "com.example.localbusiness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495891078078-ut1l6o5buicjkf5orn7dopnmbr6vrk9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKeddIsmxDtUgdiqiOO7Qgzk-n49d5uKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495891078078-ut1l6o5buicjkf5orn7dopnmbr6vrk9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495891078078:android:a1618b8cecbfd3aee0f7ef",
+        "android_client_info": {
+          "package_name": "com.randyhuynh5815.Auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495891078078-ut1l6o5buicjkf5orn7dopnmbr6vrk9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKeddIsmxDtUgdiqiOO7Qgzk-n49d5uKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495891078078-ut1l6o5buicjkf5orn7dopnmbr6vrk9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

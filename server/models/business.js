@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 // define schema of data
 const businessSchema = new mongoose.Schema({
-  lat: mongoose.SchemaTypes.Double,
-  lon: mongoose.SchemaTypes.Double,
+  lat: Number,
+  lon: Number,
   address: String,
   name: String,
   description: String,
