@@ -22,9 +22,16 @@ class _MapViewState extends State<MapView> {
     }
   }
 
-  Future<void> getLocation() async {
+  Future<LatLng> getLocation() async {
     LocationData loc = await Location.instance.getLocation();
     return LatLng(loc.latitude, loc.longitude);
+  }
+
+  Future<void> animateTo() async {
+    final loc = await getLocation();
+    final f = await _controller.future;
+    CameraPosition cameraPosition = CameraPosition(target: loc, zoom: 14);
+    f.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
   }
 
   LatLng location = LatLng(37.4, -122.08832357078792);
@@ -32,6 +39,7 @@ class _MapViewState extends State<MapView> {
   @override
   void initState() {
     super.initState();
+    animateTo();
     Location.instance.onLocationChanged.listen((loc) {
       if (loc.latitude != location.latitude &&
           loc.longitude != location.longitude) {
@@ -46,9 +54,6 @@ class _MapViewState extends State<MapView> {
   @override
   Widget build(BuildContext context) {
     ensureLocationPermission();
-    // if (Provider.of<MapProvider>(context).markers.isEmpty) {
-    //   Provider.of<MapProvider>(context).getMarkers();
-    // }
     final circleRadius = Provider.of<MapProvider>(context).searchProximity;
     Set<Circle> _circles = {
       Circle(
