@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:localbusiness/models/Business.dart';
+import 'package:localbusiness/views/business_sheet/sheet_provider.dart';
 import '../../repositories/MongoClient.dart';
+import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapProvider extends ChangeNotifier {
-  Function expandSheet;
-  MapProvider({this.expandSheet});
+  SheetProvider sheetProvider;
+  MapProvider({this.sheetProvider});
 
   double _searchProximity = 100;
   double get searchProximity => _searchProximity;
@@ -20,12 +22,14 @@ class MapProvider extends ChangeNotifier {
   Set<Marker> _markers = {};
   Set<Marker> get markers => _markers;
 
-  void onMarkerTap(LatLng loc, MarkerId id) {
+  void onMarkerTap(LatLng loc, MarkerId id, String name) {
     print("TAPPED MARKER");
     print(loc.latitude);
     print(loc.longitude);
     print(id);
-    this.expandSheet();
+    sheetProvider.setLoc(loc);
+    sheetProvider.setTitle(name);
+    sheetProvider.openSheet();
   }
 
   Future<void> getMarkers() async {
@@ -37,7 +41,7 @@ class MapProvider extends ChangeNotifier {
       final marker = Marker(
         markerId: id,
         position: pos,
-        onTap: () => onMarkerTap(pos, id),
+        onTap: () => onMarkerTap(pos, id, business.name),
       );
 
       if (_markers.contains(marker)) continue;

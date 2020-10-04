@@ -11,6 +11,7 @@ import "widgets/business_images.dart";
 import "widgets/description.dart";
 import "widgets/job_postings.dart";
 import 'widgets/additional_documents.dart';
+import 'widgets/donate.dart';
 
 class DraggableBusinessSheet extends StatefulWidget {
   @override
@@ -32,9 +33,9 @@ class _DraggableBusinessSheetState extends State<DraggableBusinessSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return context.watch<DraggableSheetViewModel>().isSheetOpen
+    return context.watch<SheetProvider>().isSheetOpen
         ? SlidingUpPanel(
-            margin: EdgeInsets.all(20.0),
+            margin: EdgeInsets.symmetric(horizontal: 20.0),
             controller: _pc,
             minHeight: MediaQuery.of(context).size.height * .08,
             maxHeight: MediaQuery.of(context).size.height,
@@ -56,14 +57,14 @@ class _DraggableBusinessSheetState extends State<DraggableBusinessSheet> {
                     Header(),
                     BusinessTitle(),
                     Divider(),
+                    Donate(),
                     RelevantInfo(),
                     Divider(),
                     BusinessImages(),
                     Divider(),
                     Description(),
                     Divider(),
-                    JobPostings(
-                        context.read<DraggableSheetViewModel>().listOfJobs),
+                    JobPostings(context.read<SheetProvider>().listOfJobs),
                     Divider(),
                     AdditionalDocuments(),
                   ],

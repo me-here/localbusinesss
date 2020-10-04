@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import 'package:provider/provider.dart';
+import '../sheet_provider.dart';
 
 class BusinessTitle extends StatelessWidget {
   const BusinessTitle({
@@ -15,7 +17,7 @@ class BusinessTitle extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              "Title",
+              context.watch<SheetProvider>().title,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30,
@@ -30,7 +32,7 @@ class BusinessTitle extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 Text(
-                  "0.5 Miles Away",
+                  "${context.watch<SheetProvider>().metersAway} meters away",
                   style: TextStyle(color: Colors.grey),
                 ),
               ],

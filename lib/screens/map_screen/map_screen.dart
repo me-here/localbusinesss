@@ -14,12 +14,11 @@ class MapScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ChangeNotifierProvider<DraggableSheetViewModel>(
-          create: (context) => DraggableSheetViewModel(),
+        child: ChangeNotifierProvider<SheetProvider>(
+          create: (context) => SheetProvider(),
           builder: (context, child) => ChangeNotifierProvider<MapProvider>(
-            create: (context) => MapProvider(
-                expandSheet: () =>
-                    context.read<DraggableSheetViewModel>().openSheet()),
+            create: (context) =>
+                MapProvider(sheetProvider: context.read<SheetProvider>()),
             builder: (context, child) => Stack(
               children: [
                 MapView(),

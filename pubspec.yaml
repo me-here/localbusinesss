@@ -38,6 +38,7 @@ dependencies:
   http: ^0.12.2
   sliding_up_panel: ^1.0.2
 
+  stripe_payment: ^1.0.8
 
   # Firebase
   # firebase_auth: ^0.18.1+1
