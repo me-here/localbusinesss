@@ -21,6 +21,7 @@ class _SearchBarState extends State<SearchBar> {
                 filled: true,
                 fillColor: Colors.white,
                 border: const OutlineInputBorder(),
+                suffixIcon: Icon(Icons.search),
               ),
               onSubmitted: (value) {
                 print(value);
