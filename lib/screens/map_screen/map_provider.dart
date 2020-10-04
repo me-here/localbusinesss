@@ -18,7 +18,9 @@ class MapProvider extends ChangeNotifier {
   Set<Marker> get markers => _markers;
 
   Future<void> getMarkers() async {
+    print("IS THIS WORKING?");
     _businesses = await MongoClient.getNearbyBusinesses();
+    print(_businesses ?? "kdjsjd");
     for (final business in _businesses) {
       final id = MarkerId(business.name);
       final pos = LatLng(business.lat, business.lon);
@@ -29,6 +31,8 @@ class MapProvider extends ChangeNotifier {
       print("ksjksjdkaj");
     }
 
+    // _markers.add(Marker(markerId: MarkerId("KSJDKj"), position: LatLng(0, 0)));
+    // print('hello');
     notifyListeners();
   }
 }
