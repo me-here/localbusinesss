@@ -5,6 +5,7 @@ class Business {
   String name;
   String description;
   String imageURL;
+  String iconURL;
 
   Business({
     this.lat,
@@ -13,6 +14,7 @@ class Business {
     this.name,
     this.description,
     this.imageURL,
+    this.iconURL,
   });
 
   factory Business.fromJSON(Map<String, dynamic> json) {
