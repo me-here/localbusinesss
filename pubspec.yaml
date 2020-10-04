@@ -35,7 +35,6 @@ dependencies:
   google_maps_flutter: ^1.0.2
   location: ^3.0.0
   permission_handler: ^5.0.1+1
-  sliding_up_panel: ^1.0.2
 
   # Firebase
   firebase_auth: ^0.18.1+1
