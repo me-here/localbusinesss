@@ -15,11 +15,20 @@ class Business {
     this.imageURL,
   });
 
-  Business.fromJSON(Map<String, dynamic> json)
-      : lat = json['lat'],
-        lon = json['lon'],
-        address = json['address'],
-        name = json['name'],
-        description = json['description'],
-        imageURL = json['imageURL'];
+  factory Business.fromJSON(Map<String, dynamic> json) {
+    final lat = json['lat'].toDouble();
+    final lon = json['lon'].toDouble();
+    final address = json['address'];
+    final name = json['name'];
+    final description = json['description'];
+    final imageURL = json['imageURL'];
+
+    return Business(
+        lat: lat,
+        lon: lon,
+        address: address,
+        name: name,
+        description: description,
+        imageURL: imageURL);
+  }
 }

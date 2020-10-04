@@ -46,9 +46,9 @@ class _MapViewState extends State<MapView> {
   @override
   Widget build(BuildContext context) {
     ensureLocationPermission();
-    if (Provider.of<MapProvider>(context).markers.isEmpty) {
-      Provider.of<MapProvider>(context).getMarkers();
-    }
+    // if (Provider.of<MapProvider>(context).markers.isEmpty) {
+    //   Provider.of<MapProvider>(context).getMarkers();
+    // }
     final circleRadius = Provider.of<MapProvider>(context).searchProximity;
     Set<Circle> _circles = {
       Circle(
@@ -73,6 +73,7 @@ class _MapViewState extends State<MapView> {
         ),
         onMapCreated: (controller) {
           _controller.complete(controller);
+          Provider.of<MapProvider>(context, listen: false).getMarkers();
         },
         markers: Provider.of<MapProvider>(context).markers,
         onTap: (LatLng pos) {
