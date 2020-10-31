@@ -1,24 +1,26 @@
-// import 'package:flutter/material.dart';
-// import '../login_screen/login_screen.dart';
-// import '../login_screen/register.dart';
+import './../../services/auth.dart';
+import 'package:flutter/material.dart';
 
-// class HomeScreen extends StatefulWidget {
-//   @override
-//   _HomeScreenState createState() => _HomeScreenState();
-// }
+class Home extends StatelessWidget {
+  final AuthService _auth = AuthService();
 
-// class _HomeScreenState extends State<HomeScreen> {
-//   bool showSignIn = true;
-//   void toggleView() {
-//     setState(() => showSignIn = !showSignIn);
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     if (showSignIn) {
-//       return LoginScreen(toggleView: toggleView);
-//     } else {
-//       return Register(toggleView: toggleView);
-//     }
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blue[50],
+      appBar: AppBar(
+        title: Text('Home Page'),
+        backgroundColor: Colors.blue[200],
+        actions: <Widget>[
+          FlatButton.icon(
+            icon: Icon(Icons.person),
+            label: Text('Logout'),
+            onPressed: () async {
+              await _auth.signOut();
+            },
+          )
+        ],
+      ),
+    );
+  }
+}

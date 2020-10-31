@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stripe_payment/stripe_payment.dart';
+// import 'package:stripe_payment/stripe_payment.dart';
 import 'dart:io';
 
 class Donate extends StatefulWidget {

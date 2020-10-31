@@ -8,8 +8,11 @@ import 'package:localbusiness/screens/map_screen/widgets/settings_button.dart';
 import "../../views/business_sheet/draggable_business_sheet.dart";
 import "../../views/business_sheet/sheet_provider.dart";
 import './map_provider.dart';
+import 'dart:math' as math;
+import './../../services/auth.dart';
 
 class MapScreen extends StatelessWidget {
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +41,13 @@ class MapScreen extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(child: LocationSlider()),
-                          SettingsButton(),
+                          IconButton(
+                            icon: Icon(Icons.arrow_circle_up),
+                            iconSize: 30.0,
+                            onPressed: () async {
+                              await _auth.signOut();
+                            },
+                          )
                         ],
                       ),
                     ),
