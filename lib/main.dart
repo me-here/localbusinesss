@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import './screens/login_screen/wrapper.dart';
-import 'package:localbusiness/screens/map_screen/map_screen.dart';
+import 'screens/login_screen/wrapperfinal.dart';
+import 'package:localbusiness/screens/map_screen/map_screenfinal.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import './models/user.dart';
-import './services/auth.dart';
+import 'models/user.dart';
+import 'services/authfinal.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

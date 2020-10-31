@@ -6,7 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:location/location.dart';
 import "../../../views/business_sheet/sheet_provider.dart";
-import '../map_provider.dart';
+import '../map_providerfinal.dart';
 
 class MapView extends StatefulWidget {
   @override

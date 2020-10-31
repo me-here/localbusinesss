@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import '../map_provider.dart';
+import '../map_providerfinal.dart';
 
 class LocationSlider extends StatelessWidget {
   const LocationSlider({

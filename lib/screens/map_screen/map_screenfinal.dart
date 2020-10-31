@@ -5,11 +5,11 @@ import 'package:provider/provider.dart';
 import 'package:localbusiness/screens/map_screen/widgets/map_view.dart';
 import 'package:localbusiness/screens/map_screen/widgets/location_slider.dart';
 import 'package:localbusiness/screens/map_screen/widgets/settings_button.dart';
-import "../../views/business_sheet/draggable_business_sheet.dart";
-import "../../views/business_sheet/sheet_provider.dart";
-import './map_provider.dart';
+import '../../views/business_sheet/draggable_business_sheet.dart';
+import '../../views/business_sheet/sheet_provider.dart';
+import 'map_providerfinal.dart';
 import 'dart:math' as math;
-import './../../services/auth.dart';
+import '../../services/authfinal.dart';
 
 class MapScreen extends StatelessWidget {
   final AuthService _auth = AuthService();
