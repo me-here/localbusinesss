@@ -4,6 +4,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 class SheetProvider extends ChangeNotifier {
+
+  // Manages title of selected locations
   String _title = "";
   String get title => _title;
   void setTitle(String s) {
@@ -11,6 +13,7 @@ class SheetProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Sets the distance from the user and the tapped location
   double _metersAway = 1.0;
   double get metersAway => _metersAway;
   void setMetersAway(double mapDistance) {
@@ -18,6 +21,8 @@ class SheetProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Finds the distance in lat long from the user to the restaurant and then
+  // sets it using setMetersAway()
   LatLng _loc;
   LatLng get loc => _loc;
   Future<void> setLoc(LatLng loc) async {
@@ -31,8 +36,10 @@ class SheetProvider extends ChangeNotifier {
     // notifyListeners();
   }
 
+  // Checks if the sheet should be open only if an icon has been tapped
   var isSheetOpen = false;
 
+  // List of open job positions
   final jobs = [
     {"position": "Cook", "type": "Full Time", "urgency": "Urgent"},
     {"position": "Janitor", "type": "Part Time", "urgency": "Not Urgent"},

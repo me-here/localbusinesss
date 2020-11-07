@@ -17,6 +17,7 @@ class BusinessTitle extends StatelessWidget {
         child: Column(
           children: [
             Text(
+              // Takes the title from sheet_provider.dart
               context.watch<SheetProvider>().title,
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -32,6 +33,7 @@ class BusinessTitle extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 Text(
+                  // Takes the distance from sheet_provider.dart
                   "${context.watch<SheetProvider>().metersAway} meters away",
                   style: TextStyle(color: Colors.grey),
                 ),

@@ -13,12 +13,15 @@ import "widgets/job_postings.dart";
 import 'widgets/additional_documents.dart';
 import 'widgets/donate.dart';
 
+
 class DraggableBusinessSheet extends StatefulWidget {
   @override
   _DraggableBusinessSheetState createState() => _DraggableBusinessSheetState();
 }
 
 class _DraggableBusinessSheetState extends State<DraggableBusinessSheet> {
+
+  //Controller for the sliding_up_panel
   PanelController _pc = new PanelController();
 
   @override
@@ -33,6 +36,10 @@ class _DraggableBusinessSheetState extends State<DraggableBusinessSheet> {
 
   @override
   Widget build(BuildContext context) {
+
+    //Looks at the isSheetOpen Variable to see if the sheet should or
+    //should not be shown to the user. If not, an empty container is
+    //shown in its place
     return context.watch<SheetProvider>().isSheetOpen
         ? SlidingUpPanel(
             margin: EdgeInsets.symmetric(horizontal: 20.0),
@@ -44,6 +51,8 @@ class _DraggableBusinessSheetState extends State<DraggableBusinessSheet> {
               topRight: Radius.circular(40),
             ),
             backdropEnabled: true,
+
+            //Builds all of the information inside of the sliding_up_panel
             panelBuilder: (ScrollController sc) {
               return Container(
                 margin: EdgeInsets.symmetric(vertical: 20.0),
@@ -71,6 +80,6 @@ class _DraggableBusinessSheetState extends State<DraggableBusinessSheet> {
                 ),
               );
             })
-        : Container();
+        : Container(); //Empty container for if the sliding_up_panel shouldn't be shown
   }
 }
