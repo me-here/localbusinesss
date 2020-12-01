@@ -23,7 +23,7 @@ class MapProvider extends ChangeNotifier {
   Set<Marker> get markers => _markers;
 
   void onMarkerTap(LatLng loc, MarkerId id, String name) {
-    print("TAPPED MARKER");
+    print('TAPPED MARKER');
     print(loc.latitude);
     print(loc.longitude);
     print(id);

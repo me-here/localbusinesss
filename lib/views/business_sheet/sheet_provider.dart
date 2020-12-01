@@ -4,9 +4,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 class SheetProvider extends ChangeNotifier {
-
   // Manages title of selected locations
-  String _title = "";
+  String _title = '';
   String get title => _title;
   void setTitle(String s) {
     _title = s;
@@ -41,9 +40,9 @@ class SheetProvider extends ChangeNotifier {
 
   // List of open job positions
   final jobs = [
-    {"position": "Cook", "type": "Full Time", "urgency": "Urgent"},
-    {"position": "Janitor", "type": "Part Time", "urgency": "Not Urgent"},
-    {"position": "Manager", "type": "Full Time", "urgency": "Urgent"},
+    {'position': 'Cook', 'type': 'Full Time', 'urgency': 'Urgent'},
+    {'position': 'Janitor', 'type': 'Part Time', 'urgency': 'Not Urgent'},
+    {'position': 'Manager', 'type': 'Full Time', 'urgency': 'Urgent'},
   ];
 
   List get listOfJobs => jobs;
