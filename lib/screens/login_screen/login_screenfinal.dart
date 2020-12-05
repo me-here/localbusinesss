@@ -29,7 +29,7 @@ class _SignInState extends State<SignIn> {
             resizeToAvoidBottomPadding: false,
             appBar: AppBar(
               backgroundColor: Colors.blue,
-              title: Text("Local Business Supporter"),
+              title: Text('Local Business Supporter'),
             ),
             body: Container(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
@@ -39,7 +39,7 @@ class _SignInState extends State<SignIn> {
                   children: <Widget>[
                     SizedBox(height: 20.0),
                     Text(
-                      "Do the right thing. Help out your local businesses today!",
+                      'Do the right thing. Help out your local businesses today!',
                       style: TextStyle(fontSize: 35.0),
                     ),
                     SizedBox(height: 20.0),
@@ -73,7 +73,7 @@ class _SignInState extends State<SignIn> {
                             dynamic result = await _auth.login(email, password);
                             if (result == null) {
                               setState(() {
-                                error = "Email or password is incorrect.";
+                                error = 'Email or password is incorrect.';
                                 loading = false;
                               });
                             }

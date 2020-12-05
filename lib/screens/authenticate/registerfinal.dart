@@ -34,7 +34,7 @@ class _RegisterState extends State<Register> {
             resizeToAvoidBottomPadding: false,
             appBar: AppBar(
               backgroundColor: Colors.blue,
-              title: Text("Local Business Supporter"),
+              title: Text('Local Business Supporter'),
             ),
             body: Container(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
@@ -44,7 +44,7 @@ class _RegisterState extends State<Register> {
                   children: <Widget>[
                     SizedBox(height: 10.0),
                     Text(
-                      "Create an Account",
+                      'Create an Account',
                       style: TextStyle(fontSize: 30.0),
                     ),
                     SizedBox(height: 15.0),
@@ -90,7 +90,7 @@ class _RegisterState extends State<Register> {
                         }),
                     SizedBox(height: 20.0),
                     Text(
-                      "I am a...",
+                      'I am a...',
                       style: TextStyle(fontSize: 24),
                     ),
                     DropdownButton<String>(
@@ -140,7 +140,7 @@ class _RegisterState extends State<Register> {
                           });
                           if (result == null) {
                             setState(() {
-                              error = "At least one of your inputs is invalid";
+                              error = 'At least one of your inputs is invalid';
                               loading = false;
                             });
                           }
@@ -153,7 +153,7 @@ class _RegisterState extends State<Register> {
                       style: TextStyle(color: Colors.red, fontSize: 14.0),
                     ),
                     FlatButton(
-                      child: Text("Already have an account?"),
+                      child: Text('Already have an account?'),
                       onPressed: () {
                         widget.toggleView();
                       },
